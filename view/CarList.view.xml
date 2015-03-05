@@ -1,0 +1,17 @@
+<core:View 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	controllerName="tcs.cartracker.controller.CarList">
+	
+    <List 
+    id="list"
+    headerText="Vehicles"
+    items="{
+      'path': '/vehicles'
+    }" >
+        <StandardListItem
+          title="{name}"
+          counter="{miles}"/>
+  </List>
+	
+</core:View>
