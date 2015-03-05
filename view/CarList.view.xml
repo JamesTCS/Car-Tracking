@@ -3,15 +3,20 @@
 	xmlns:core="sap.ui.core"
 	controllerName="tcs.cartracker.controller.CarList">
 	
-    <List 
-    id="list"
-    headerText="Vehicles"
-    items="{
-      'path': '/vehicles'
-    }" >
-        <StandardListItem
-          title="{name}"
-          counter="{miles}"/>
-  </List>
+	<Page title="vehicles" >
+	    <headerContent>
+	        <Button icon="sap-icon://add" press="addCar" />
+	        
+	    </headerContent>
+	
+        <List 
+        id="list"
+        items="{/vehicles}" >
+            <StandardListItem
+              title="{name}"
+              counter="{miles}"
+              press="carSelect" />
+        </List>
+    </Page>
 	
 </core:View>

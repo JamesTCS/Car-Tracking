@@ -1,0 +1,21 @@
+<core:View 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="tcs.cartracker.controller.CarList">
+	
+	<Page title="Add New Vehicle" >
+	    
+        <f:SimpleForm>
+        <f:content>
+          <Label text="Car Name" />
+          <Input id="name" type="Text" width="200px" />
+          
+          <Label text="Miles" />
+          <Input id="miles" type="Text" width="200px" />
+          
+        </f:content>
+      </f:SimpleForm>
+    </Page>
+	
+</core:View>

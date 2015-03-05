@@ -1,5 +1,3 @@
-jQuery.sap.require("jquery.sap.storage");  
-
 sap.ui.controller("tcs.cartracker.controller.CarList", {
 
 /**
@@ -8,16 +6,7 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
 * @memberOf calculator.calculator
 */
 	onInit: function() {
-	    this.storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-	    var vehicleDB = this.storage.get("vehicleDB");  //Get Data 
-	    debugger;
-	    if(vehicleDB === null)  
-            this.model = new sap.ui.model.json.JSONModel("model/vehicles.json");
-        else {
-            this.model = new sap.ui.model.json.JSONModel();
-            this.model.setJSON(vehicleDB);
-        }
-        this.getView().setModel(this.model);
+
         
 	},
 
@@ -50,15 +39,5 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
 //
 //	}
 
-    addCar: function() {
-        //var model = this.getView().getModel();
-        this.getView().getModel().setProperty("/vehicles/2", {name:"new car", miles: 200});
-        //var data = this.getView().getModel().getData();
-        var json = this.model.getJSON();
-        debugger;
-        //var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-        this.storage.put("vehicleDB", json); //Set Data  
-        
-    }
 
 });
