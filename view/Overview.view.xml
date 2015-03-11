@@ -1,0 +1,10 @@
+<core:View 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	
+	<Page title="Overview" >
+	    
+	    <Label text="Overview of Cars" />
+    </Page>
+	
+</core:View>

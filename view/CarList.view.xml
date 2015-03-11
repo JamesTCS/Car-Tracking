@@ -11,11 +11,12 @@
 	
         <List 
         id="list"
-        items="{/vehicles}" >
+        items="{vehicleDB>/vehicles}"
+        mode="SingleSelectMaster"
+        select="carSelect" >
             <StandardListItem
-              title="{name}"
-              counter="{miles}"
-              press="carSelect" />
+              title="{vehicleDB>name}"
+              counter="{vehicleDB>miles}"/>
         </List>
     </Page>
 	

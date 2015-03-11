@@ -1,6 +1,6 @@
-jQuery.sap.require("jquery.sap.storage");  
 
-sap.ui.controller("tcs.cartracker.controller.CarList", {
+
+sap.ui.controller("tcs.cartracker.controller.Car", {
 
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -8,10 +8,35 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
 * @memberOf calculator.calculator
 */
 	onInit: function() {
-	    this.model = this.getView().getModel("vehicleDB");
-        
-	},
 
+	   this.tableTemplate = new sap.m.ColumnListItem({
+	       cells:[
+	           new sap.m.Text({  text : "{vehicleDB>date}"  }),
+	           new sap.m.Text({  text : "{vehicleDB>last}"  })
+	       ]
+	   });
+	    /*
+        this.getView().addEventDelegate({
+           onBeforeShow: function(evt) {
+                alert("Here");
+           }
+        
+        }) */
+  
+	},
+	
+	changeCarData: function(context, carID) {
+	    
+	    this.byId("infoHeader").setBindingContext(context, "vehicleDB");
+	    //bind data to oil tab
+	    this.byId("oilTable").bindItems("vehicleDB>/oil/" + carID, this.tableTemplate);
+	    debugger;
+	    //context.sPath = "/oil/" + carID +"/0";
+	    this.byId("oilInfo").setBindingContext(context, "vehicleDB");
+	    var oilInfo = this.byId("oilInfo");
+	    
+	    debugger;
+	}
 /** 
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 * (NOT before the first rendering! onInit() is used for that one!).
@@ -41,19 +66,5 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
 //
 //	}
     
-    carSelect: function(event) {
-        sap.ui.getCore().Global.splitApp.toDetail("car");
-        var carID = event.mParameters.listItem.oBindingContexts.vehicleDB.sPath.split("/");
-        var context = event.mParameters.listItem.oBindingContexts.vehicleDB;
-        //sap.ui.getCore().Global.context = context[context.length -1];
-        sap.ui.getCore().byId("car").getController().changeCarData( context, carID[carID.length-1] );
-
-    },
-
-    addCar: function() {
-        sap.ui.getCore().Global.splitApp.toDetail("addCar");
-        sap.ui.getCore().Global.splitApp.hideMaster();
-        
-    }
 
 });

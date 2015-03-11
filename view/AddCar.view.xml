@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
 	xmlns:f="sap.ui.layout.form"
-	controllerName="tcs.cartracker.controller.CarList">
+	controllerName="tcs.cartracker.controller.AddCar">
 	
 	<Page title="Add New Vehicle" >
 	    
@@ -13,6 +13,9 @@
           
           <Label text="Miles" />
           <Input id="miles" type="Text" width="200px" />
+          
+          <Label text="" />
+          <Button text="Add" width="200px" press="addCar" />
           
         </f:content>
       </f:SimpleForm>

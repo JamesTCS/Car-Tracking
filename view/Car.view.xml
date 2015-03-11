@@ -1,0 +1,60 @@
+<core:View 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="tcs.cartracker.controller.Car"	>
+	<Page title="Specific Car" >
+	    <ObjectHeader
+	        id="infoHeader"
+            title="{vehicleDB>name}"
+            number="{vehicleDB>miles}"
+            numberUnit="miles" >
+            <statuses>
+              <ObjectStatus
+                text="Some Damaged"
+                state="Error" />
+              <ObjectStatus
+                text="In Stock"
+                state="Success" />
+            </statuses>
+            <attributes>
+              <ObjectAttribute id="oilInfo" text="Last Oil Change: {vehicleDB>last} miles, Date: {vehicleDB>date}" />
+              <ObjectAttribute text="Last Tire Rotation:" />
+              <ObjectAttribute text="Last Filter Change:" />
+              <ObjectAttribute text="Last Tire Change:" />
+              <ObjectAttribute text="www.sap.com" active="true" press="handleLinkObjectAttributePress" />
+            </attributes>
+        </ObjectHeader>
+        
+        <IconTabBar id="tabs" >
+            <items>
+              <IconTabFilter
+                id="oil"
+                icon="sap-icon://hint">
+                <content>
+                    <core:Fragment fragmentName="tcs.cartracker.fragments.Oil" type="XML" />
+                </content>
+              </IconTabFilter>
+              <IconTabFilter
+                id="filter"
+                icon="sap-icon://attachment"
+                count="3">
+                <Text text="Attachments go here ..." />
+              </IconTabFilter>
+              <IconTabFilter
+                id="tireRotate"
+                icon="sap-icon://notes"
+                count="12">
+                <Text text="Notes go here ..." />
+              </IconTabFilter>
+              <IconTabFilter
+                id="tireChange"
+                icon="sap-icon://group">
+                <Text text="People content goes here ..." />
+              </IconTabFilter>
+            </items>
+        </IconTabBar>
+        
+    </Page>
+	
+</core:View>

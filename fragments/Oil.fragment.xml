@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+
+    <Table id="oilTable" >
+        <headerToolbar>
+          <Toolbar>
+            <Label text="Last Oil Changes"></Label>
+          </Toolbar>
+        </headerToolbar>
+        <columns>
+          <Column>
+            <Text text="Date" />
+          </Column>
+          <Column>
+            <Text text="Miles" />
+          </Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+                <Text text="{vehicleDB>date}" />
+                <Text text="{vehicleDB>last}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>
