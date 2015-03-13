@@ -3,6 +3,87 @@
 	xmlns:core="sap.ui.core"
 	xmlns:f="sap.ui.layout.form"
 	controllerName="tcs.cartracker.controller.Car"	>
+<<<<<<< HEAD
+	<Page title="Vehicle Details" >
+	    <ObjectHeader
+	        id="infoHeader"
+            title="{vehicleDB>name}"
+            number="{vehicleDB>miles}"
+            numberUnit="miles" >
+            <statuses>
+              <ObjectStatus id="oilStatus" text="Change Soon" state="Warning"  />
+              <ObjectStatus id="filterStatus" text="OK" state="Success" />
+              <ObjectStatus id="tireRotateStatus" text="Needs Maintenance" state="Error"  />
+              <ObjectStatus id="tireChangeStatus" text="OK" state="Success" />
+              <ObjectStatus id="brakesStatus"  text="OK" state="Success" />
+              <ObjectStatus id="carWashStatus" text="OK" state="Success" />
+            </statuses>
+            <attributes>
+              <ObjectAttribute id="oilInfo" title="Oil Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="filterInfo" title="Filter Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="tireRotateInfo" title="Tire Rotation" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="tireChangeInfo" title="Tire Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="brakesInfo" title="Brakes" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="carWashInfo" title="Car Wash" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+            </attributes>
+        </ObjectHeader>
+        
+        <IconTabBar id="tabs" >
+            <items>
+              <IconTabFilter
+                id="oil"
+                icon="sap-icon://hint">
+                <content>
+                    <IconTabBar
+                        id="oilTabs">
+                        <items>
+                          <IconTabFilter
+                            text="Oil:" enabled="false">
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Table" key="table">
+                            <core:Fragment fragmentName="tcs.cartracker.fragments.Oil" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Graph">
+                            <Text text="Attachments go here ..." />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Add">
+                            <core:Fragment id="oilFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Remove">
+                            <Text text="People content goes here ..." />
+                          </IconTabFilter>
+                        </items>
+                      </IconTabBar>
+                    
+                </content>
+              </IconTabFilter>
+              <IconTabFilter
+                id="filter"
+                icon="sap-icon://attachment">
+                    <core:Fragment fragmentName="tcs.cartracker.fragments.Filter" type="XML" />
+              </IconTabFilter>
+              <IconTabFilter
+                id="tireRotate"
+                icon="sap-icon://notes">
+                <Text text="Notes go here ..." />
+              </IconTabFilter>
+              <IconTabFilter
+                id="tireChange"
+                icon="sap-icon://group">
+                <Text text="People content goes here ..." />
+              </IconTabFilter>
+              <IconTabFilter
+                id="brakes"
+                icon="sap-icon://group">
+                <Text text="People content goes here ..." />
+              </IconTabFilter>
+              <IconTabFilter
+                id="carWash"
+=======
 	<Page title="Specific Car" >
 	    <ObjectHeader
 	        id="infoHeader"
@@ -49,6 +130,7 @@
               </IconTabFilter>
               <IconTabFilter
                 id="tireChange"
+>>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
                 icon="sap-icon://group">
                 <Text text="People content goes here ..." />
               </IconTabFilter>

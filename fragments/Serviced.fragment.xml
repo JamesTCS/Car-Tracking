@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form">
+	
+    <f:SimpleForm>
+        <f:content>
+          <Label text="Miles When Serviced" />
+          <Input id="miles" type="Number" width="200px" />
+          
+          <Label text="Serviced On" />
+          <DatePicker id="date" width="200px" />
+          
+          <Label text="" />
+          <Button id="serviceBtn" text="Add" width="200px" press="serviced" />
+          
+        </f:content>
+                
+    </f:SimpleForm>
+</core:FragmentDefinition>

@@ -2,10 +2,10 @@
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
 
-    <Table id="oilTable" >
+    <Table id="filterTable" >
         <headerToolbar>
           <Toolbar>
-            <Label text="Last Oil Changes"></Label>
+            <Label text="Last Filter Changes"></Label>
           </Toolbar>
         </headerToolbar>
         <columns>
@@ -20,11 +20,7 @@
           <ColumnListItem>
             <cells>
                 <Text text="{vehicleDB>date}" />
-<<<<<<< HEAD
                 <Text text="{vehicleDB>miles}" />
-=======
-                <Text text="{vehicleDB>last}" />
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
             </cells>
           </ColumnListItem>
         </items>
