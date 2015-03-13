@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 jQuery.sap.require("sap.m.MessageToast");
 
 sap.ui.controller("tcs.cartracker.controller.Car", {
@@ -140,7 +139,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	 isInt: function(x) {  // function returns if a value is an integer or not
         return (typeof x === "number") && (x % 1 === 0);
     }
-=======
+
 
 
 sap.ui.controller("tcs.cartracker.controller.Car", {
@@ -210,5 +209,5 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 //	}
     
 
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
+
 });

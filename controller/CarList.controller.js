@@ -8,11 +8,9 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
 * @memberOf calculator.calculator
 */
 	onInit: function() {
-<<<<<<< HEAD
+
 	    this.model = this.getView().getModel("vehicleDB"); // not used!!
-=======
-	    this.model = this.getView().getModel("vehicleDB");
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
+
         
 	},
 
@@ -51,10 +49,8 @@ sap.ui.controller("tcs.cartracker.controller.CarList", {
         var context = event.mParameters.listItem.oBindingContexts.vehicleDB;
         //sap.ui.getCore().Global.context = context[context.length -1];
         sap.ui.getCore().byId("car").getController().changeCarData( context, carID[carID.length-1] );
-<<<<<<< HEAD
         sap.ui.getCore().Global.splitApp.hideMaster();
-=======
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
+
 
     },
 

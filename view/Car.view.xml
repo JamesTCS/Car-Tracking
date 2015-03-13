@@ -3,7 +3,7 @@
 	xmlns:core="sap.ui.core"
 	xmlns:f="sap.ui.layout.form"
 	controllerName="tcs.cartracker.controller.Car"	>
-<<<<<<< HEAD
+
 	<Page title="Vehicle Details" >
 	    <ObjectHeader
 	        id="infoHeader"
@@ -83,7 +83,7 @@
               </IconTabFilter>
               <IconTabFilter
                 id="carWash"
-=======
+
 	<Page title="Specific Car" >
 	    <ObjectHeader
 	        id="infoHeader"
@@ -130,7 +130,6 @@
               </IconTabFilter>
               <IconTabFilter
                 id="tireChange"
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
                 icon="sap-icon://group">
                 <Text text="People content goes here ..." />
               </IconTabFilter>

@@ -20,11 +20,8 @@
           <ColumnListItem>
             <cells>
                 <Text text="{vehicleDB>date}" />
-<<<<<<< HEAD
                 <Text text="{vehicleDB>miles}" />
-=======
                 <Text text="{vehicleDB>last}" />
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
             </cells>
           </ColumnListItem>
         </items>

@@ -5,7 +5,6 @@
         
     ],
     
-<<<<<<< HEAD
     "settings" : [
       {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotate": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000},
       {"warning": 800, "oil": 5000, "filter": 10000, "tireRotate": 20000, "tireChange": 60000, "brakes": 25000, "carWash": 12000}
@@ -102,24 +101,5 @@
         ]
         
         ]
-=======
-    "oil" : [
-        
-        [
-            {"last": 1000, "date": 20141105},
-            {"last": 4000, "date": 20141205},
-            {"last": 7000, "date": 20150105},
-            {"last": 10000, "date": 20150205},
-            {"last": 13000, "date": 20150305}
-        ],
-        [
-            {"last": 2000, "date": 20141105},
-            {"last": 6000, "date": 20141205},
-            {"last": 10000, "date": 20150105},
-            {"last": 14000, "date": 20150205},
-            {"last": 18000, "date": 20150305}    
-        ]
-        
-    ]
->>>>>>> c7d6a7f144c29ef059b988ff568fc61a7a8a062f
+
 }
