@@ -1,6 +1,10 @@
 {
   "hcpdeploy": {
     "account": "s0012946256trial",
+<<<<<<< HEAD
     "name": "cartracking2"
+=======
+    "name": "cartracking"
+>>>>>>> 13775b5b436983a4946d457615cdbb8e0d74b03d
   }
 }
