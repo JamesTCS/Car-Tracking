@@ -11,7 +11,7 @@
           <Label text="Car Name" />
           <Input id="name" type="Text" width="200px" />
           
-          <Label text="Miles" />
+          <Label text="Current Miles" />
           <Input id="miles" type="Text" width="200px" />
           
           <Label text="" />

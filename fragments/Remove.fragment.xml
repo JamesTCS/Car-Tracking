@@ -2,10 +2,12 @@
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
 
-    <Table id="filterTable" >
+    <Table id="delTable" mode="MultiSelect">
         <headerToolbar>
           <Toolbar>
-            <Label text="Last Filter Changes"></Label>
+            <Label id="tableLabel" text="Last Oil Changes"></Label>
+            <ToolbarSpacer/>
+            <Button id="deleteBtn" text="Delete Selected" press="deleteService" type="Reject" />
           </Toolbar>
         </headerToolbar>
         <columns>
@@ -19,7 +21,7 @@
         <items>
           <ColumnListItem>
             <cells>
-                <Text text="{vehicleDB>date}" />
+                <Text text="{vehicleDB>date}"  />
                 <Text text="{vehicleDB>miles}" />
             </cells>
           </ColumnListItem>

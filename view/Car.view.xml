@@ -4,7 +4,12 @@
 	xmlns:f="sap.ui.layout.form"
 	controllerName="tcs.cartracker.controller.Car"	>
 
-	<Page title="Vehicle Details" >
+	<Page title="Vehicle Details" showNavButton="true" >
+	    <headerContent>
+	        
+	        <Button id="updateMilesBtn" icon="sap-icon://performance" text="Update Miles" press="updateMiles" />
+            <Button icon="sap-icon://action-settings" />
+        </headerContent>
 	    <ObjectHeader
 	        id="infoHeader"
             title="{vehicleDB>name}"
@@ -13,7 +18,7 @@
             <statuses>
               <ObjectStatus id="oilStatus" text="Change Soon" state="Warning"  />
               <ObjectStatus id="filterStatus" text="OK" state="Success" />
-              <ObjectStatus id="tireRotateStatus" text="Needs Maintenance" state="Error"  />
+              <ObjectStatus id="tireRotationStatus" text="Needs Maintenance" state="Error"  />
               <ObjectStatus id="tireChangeStatus" text="OK" state="Success" />
               <ObjectStatus id="brakesStatus"  text="OK" state="Success" />
               <ObjectStatus id="carWashStatus" text="OK" state="Success" />
@@ -21,28 +26,30 @@
             <attributes>
               <ObjectAttribute id="oilInfo" title="Oil Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
               <ObjectAttribute id="filterInfo" title="Filter Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
-              <ObjectAttribute id="tireRotateInfo" title="Tire Rotation" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="tireRotationInfo" title="Tire Rotation" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
               <ObjectAttribute id="tireChangeInfo" title="Tire Change" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
               <ObjectAttribute id="brakesInfo" title="Brakes" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
-              <ObjectAttribute id="carWashInfo" title="Car Wash" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
+              <ObjectAttribute id="carWashInfo" title="Wash/Wax" text="@ {vehicleDB>miles} miles, on {vehicleDB>date}" />
             </attributes>
         </ObjectHeader>
         
-        <IconTabBar id="tabs" >
+        <IconTabBar id="tabs" select="setFirstTab" expanded="true" expandable="false" >
             <items>
               <IconTabFilter
                 id="oil"
-                icon="sap-icon://hint">
+                key="oil"
+                icon="img/oil_can_icon.png"
+                expanded="true"
+                expandable="false" >
                 <content>
-                    <IconTabBar
-                        id="oilTabs">
+                    <IconTabBar id="oilTabs" expanded="true" expandable="false" >
                         <items>
                           <IconTabFilter
                             text="Oil:" enabled="false">
                           </IconTabFilter>
                           <IconTabFilter
-                            text="Table" key="table">
-                            <core:Fragment fragmentName="tcs.cartracker.fragments.Oil" type="XML" />
+                            text="Table" key="oilTable">
+                            <core:Fragment id="oilTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
                           </IconTabFilter>
                           <IconTabFilter
                             text="Graph">
@@ -54,7 +61,7 @@
                           </IconTabFilter>
                           <IconTabFilter
                             text="Remove">
-                            <Text text="People content goes here ..." />
+                            <core:Fragment id="oilRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
                           </IconTabFilter>
                         </items>
                       </IconTabBar>
@@ -63,28 +70,154 @@
               </IconTabFilter>
               <IconTabFilter
                 id="filter"
-                icon="sap-icon://attachment">
-                    <core:Fragment fragmentName="tcs.cartracker.fragments.Filter" type="XML" />
+                key="filter"
+                icon="img/filter_icon.png"
+                expanded="true"
+                expandable="false">
+                    <IconTabBar id="filterTabs" expanded="true" expandable="false" >
+                        <items>
+                          <IconTabFilter
+                            text="Filter:" enabled="false">
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Table" key="filterTable">
+                            <core:Fragment id="filterTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Graph">
+                            <Text text="Attachments go here ..." />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Add">
+                            <core:Fragment id="filterFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Remove">
+                            <core:Fragment id="filterRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
+                          </IconTabFilter>
+                        </items>
+                      </IconTabBar>
+                   
               </IconTabFilter>
               <IconTabFilter
-                id="tireRotate"
-                icon="sap-icon://notes">
-                <Text text="Notes go here ..." />
+                id="tireRotation"
+                key="tireRotation"
+                icon="img/tire_rotate_icon.png"
+                expanded="true"
+                expandable="false">
+                    <IconTabBar id="tireRotationTabs" expanded="true" expandable="false" >
+                        <items>
+                          <IconTabFilter
+                            text="Tire Rotation:" enabled="false">
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Table" key="tireRotationTable">
+                            <core:Fragment id="tireRotationTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Graph">
+                            <Text text="Attachments go here ..." />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Add">
+                            <core:Fragment id="tireRotationFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                          </IconTabFilter>
+                          <IconTabFilter
+                            text="Remove">
+                            <core:Fragment id="tireRotationRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
+                          </IconTabFilter>
+                        </items>
+                    </IconTabBar>
               </IconTabFilter>
               <IconTabFilter
                 id="tireChange"
-                icon="sap-icon://group">
-                <Text text="People content goes here ..." />
+                key="tireChange"
+                icon="img/tire_change_icon.png"
+                expanded="true"
+                expandable="false">
+                <IconTabBar id="tireChangeTabs" expanded="true" expandable="false" >
+                    <items>
+                      <IconTabFilter
+                        text="Tire Change:" enabled="false">
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Table" key="tireChangeTable">
+                        <core:Fragment id="tireChangeTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Graph">
+                        <Text text="Attachments go here ..." />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Add">
+                        <core:Fragment id="tireChangeFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Remove">
+                        <core:Fragment id="tireChangeRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
+                      </IconTabFilter>
+                    </items>
+                </IconTabBar>
               </IconTabFilter>
               <IconTabFilter
                 id="brakes"
-                icon="sap-icon://group">
-                <Text text="People content goes here ..." />
+                key="brakes"
+                icon="img/brake_icon.png"
+                expanded="true"
+                expandable="false">
+                <IconTabBar id="brakeTabs" expanded="true" expandable="false" >
+                    <items>
+                      <IconTabFilter
+                        text="Brakes:" enabled="false">
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Table" key="brakesTable">
+                        <core:Fragment id="brakesTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Graph">
+                        <Text text="Attachments go here ..." />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Add">
+                        <core:Fragment id="brakesFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Remove">
+                        <core:Fragment id="brakesRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
+                      </IconTabFilter>
+                    </items>
+                </IconTabBar>
               </IconTabFilter>
               <IconTabFilter
                 id="carWash"
-                icon="sap-icon://group">
-                <Text text="People content goes here ..." />
+                key="carWash"
+                icon="img/car_wash_icon.png"
+                expanded="true"
+                expandable="false" >
+                <IconTabBar id="carWashTabs" expanded="true" expandable="false" >
+                    <items>
+                      <IconTabFilter
+                        text="Wash/Wax:" enabled="false">
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Table" key="carWashTable">
+                        <core:Fragment id="carWashTable" fragmentName="tcs.cartracker.fragments.Table" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Graph">
+                        <Text text="Attachments go here ..." />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Add">
+                        <core:Fragment id="carWashFragment" fragmentName="tcs.cartracker.fragments.Serviced" type="XML" />
+                      </IconTabFilter>
+                      <IconTabFilter
+                        text="Remove">
+                        <core:Fragment id="carWashRemove" fragmentName="tcs.cartracker.fragments.Remove" type="XML" />
+                      </IconTabFilter>
+                    </items>
+                </IconTabBar>
               </IconTabFilter>
             </items>
         </IconTabBar>

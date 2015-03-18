@@ -2,48 +2,17 @@ jQuery.sap.require("sap.m.MessageToast");
 
 sap.ui.controller("tcs.cartracker.controller.AddCar", {
 
-/**
-* Called when a controller is instantiated and its View controls (if available) are already created.
-* Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-* @memberOf calculator.calculator
-*/
 	onInit: function() {
     
 	},
 
-/** 
-* Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-* (NOT before the first rendering! onInit() is used for that one!).
-* @memberOf calculator.calculator
-*/
-//	onBeforeRendering: function() {
-//
-//	},
-
-/**
-* Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-* This hook is the same one that SAPUI5 controls get after being rendered.
-* @memberOf calculator.calculator
-*/
-
-/**
-	onAfterRendering: function() {
-
-	},
-*/
-
-/**
-* Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-* @memberOf calculator.calculator
-*/
-//	onExit: function() {
-//
-//	}
     addCar: function() {
         var name = this.byId("name").getValue();
         var miles = parseInt( this.byId("miles").getValue() );
+        this.byId("miles").setValue("");
+        this.byId("name").setValue("");
         var valid = true;
-        debugger;
+        
         if(name === "") {
             valid = false;
             sap.m.MessageToast.show("Name cannot be empty");
@@ -61,14 +30,25 @@ sap.ui.controller("tcs.cartracker.controller.AddCar", {
             var vehModel = this.getView().getModel("vehicleDB");
             var vehObject = vehModel.getData();
             var context = "/vehicles/" + vehObject.vehicles.length;
+            //var blankArray = [{"miles":0, "date": "today"}];
             var car = new Object();
             car.name = name;
             car.miles = miles;
+            var defaultSettings = {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotation": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000};
+            
             vehModel.setProperty(context, car);
+            vehModel.setProperty("/settings/"+ vehObject.settings.length, defaultSettings );
+            vehModel.setProperty("/oil/"+ vehObject.oil.length, [] );
+            vehModel.setProperty("/filter/"+ vehObject.filter.length, [] );
+            vehModel.setProperty("/tireRotation/"+ vehObject.tireRotation.length, [] );
+            vehModel.setProperty("/tireChange/"+ vehObject.tireChange.length, [] );
+            vehModel.setProperty("/brakes/"+ vehObject.brakes.length, [] );
+            vehModel.setProperty("/carWash/"+ vehObject.carWash.length, [] );
             var json = vehModel.getJSON();
             var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
             storage.put("vehicleDB", json); //Set Data  
             sap.m.MessageToast.show("Car Saved");
+            
         }
     },
     

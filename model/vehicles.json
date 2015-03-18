@@ -6,26 +6,27 @@
     ],
     
     "settings" : [
-      {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotate": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000},
-      {"warning": 800, "oil": 5000, "filter": 10000, "tireRotate": 20000, "tireChange": 60000, "brakes": 25000, "carWash": 12000}
+      {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotation": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000},
+      {"warning": 800, "oil": 5000, "filter": 10000, "tireRotation": 20000, "tireChange": 60000, "brakes": 25000, "carWash": 12000}
         
     ],
     
     "oil" : [
         
         [
-            {"miles": 1000, "date": 20141105},
-            {"miles": 4000, "date": 20141205},
-            {"miles": 7000, "date": 20150105},
-            {"miles": 10000, "date": 20150205},
-            {"miles": 13000, "date": 20150305}
+            {"miles": 1000, "date": "Mon Mar 16 2015"},
+            {"miles": 4000, "date": "Mon Mar 16 2015"},
+            {"miles": 7000, "date": "Mon Mar 16 2015"},
+            {"miles": 10000, "date": "Mon Mar 16 2015"},
+            {"miles": 13000, "date": "Mon Mar 16 2015"},
+            {"miles": 15000, "date": "Mon Mar 16 2015"}
         ],
         [
-            {"miles": 2000, "date": 20141105},
-            {"miles": 6000, "date": 20141205},
-            {"miles": 10000, "date": 20150105},
-            {"miles": 14000, "date": 20150205},
-            {"miles": 18000, "date": 20150305}    
+            {"miles": 2000, "date": "Mon Mar 16 2015"},
+            {"miles": 6000, "date": "Mon Mar 16 2015"},
+            {"miles": 10000, "date": "Mon Mar 16 2015"},
+            {"miles": 14000, "date": "Mon Mar 16 2015"},
+            {"miles": 18000, "date": "Mon Mar 16 2015"}    
         ]
         
     ],
@@ -33,30 +34,30 @@
     "filter" : [
         
         [
-            {"miles": 1050, "date": 20141105},
-            {"miles": 4050, "date": 20141205},
-            {"miles": 7050, "date": 20150105},
-            {"miles": 10050, "date": 20150205},
-            {"miles": 13050, "date": 20150305}
+            {"miles": 1050, "date": "Mon Mar 16 2015"},
+            {"miles": 4050, "date": "Mon Mar 16 2015"},
+            {"miles": 7050, "date": "Mon Mar 16 2015"},
+            {"miles": 10050, "date": "Mon Mar 16 2015"},
+            {"miles": 13050, "date": "Mon Mar 16 2015"}
         ],
         [
-            {"miles": 2050, "date": 20141105},
-            {"miles": 6050, "date": 20141205},
-            {"miles": 10050, "date": 20150105},
-            {"miles": 14050, "date": 20150205},
-            {"miles": 18050, "date": 20150305}    
+            {"miles": 2050, "date": "Mon Mar 16 2015"},
+            {"miles": 6050, "date": "Mon Mar 16 2015"},
+            {"miles": 10050, "date": "Mon Mar 16 2015"},
+            {"miles": 14050, "date": "Mon Mar 16 2015"},
+            {"miles": 18050, "date": "Mon Mar 16 2015"}    
         ]
         
     ],
     
-    "tireRotate" : [
+    "tireRotation" : [
         
         [
-            {"miles": 5000, "date":20150220}    
+            {"miles": 5000, "date":"Mon Mar 16 2015"}    
         ],
         [
-            {"miles": 5000, "date":20150220},
-            {"miles": 10000, "date":20150424}
+            {"miles": 5000, "date": "Mon Mar 16 2015"},
+            {"miles": 10000, "date":"Mon Mar 16 2015"}
         ]
         
     ],
@@ -64,10 +65,10 @@
     "tireChange": [
         
             [
-                {"miles": 12000, "date":20150220}    
+                {"miles": 12000, "date":"Mon Mar 16 2015"}    
             ],
             [
-                {"miles": 102600, "date":20150220}
+                {"miles": 102600, "date":"Mon Mar 16 2015"}
             ]
         
     ],
@@ -75,18 +76,18 @@
     "brakes" : [
         
         [
-            {"miles": 1050, "date": 20141105},
-            {"miles": 4050, "date": 20141205},
-            {"miles": 7050, "date": 20150105},
-            {"miles": 10050, "date": 20150205},
-            {"miles": 13050, "date": 20150305}
+            {"miles": 1050, "date": "Mon Mar 16 2015"},
+            {"miles": 4050, "date": "Mon Mar 16 2015"},
+            {"miles": 7050, "date": "Mon Mar 16 2015"},
+            {"miles": 10050, "date": "Mon Mar 16 2015"},
+            {"miles": 13050, "date": "Mon Mar 16 2015"}
         ],
         [
-            {"miles": 2050, "date": 20141105},
-            {"miles": 6050, "date": 20141205},
-            {"miles": 10050, "date": 20150105},
-            {"miles": 14050, "date": 20150205},
-            {"miles": 18050, "date": 20150305}    
+            {"miles": 2050, "date": "Mon Mar 16 2015"},
+            {"miles": 6050, "date": "Mon Mar 16 2015"},
+            {"miles": 10050, "date": "Mon Mar 16 2015"},
+            {"miles": 14050, "date": "Mon Mar 16 2015"},
+            {"miles": 18050, "date": "Mon Mar 16 2015"}    
         ]
         
     ],
@@ -97,9 +98,9 @@
             
         ],
         [
-           {"miles": 176064, "date": 20150101} 
+           {"miles": 176064, "date": "Mon Mar 16 2015"} 
         ]
         
-        ]
+    ]
 
 }

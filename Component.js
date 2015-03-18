@@ -14,6 +14,7 @@ sap.ui.core.UIComponent.extend("tcs.cartracker.Component", {
             model = new sap.ui.model.json.JSONModel();
             model.setJSON(vehicleDB);
         }
+        
         this.setModel(model, "vehicleDB");
         
         //create views and add them to splitApp
@@ -30,7 +31,6 @@ sap.ui.core.UIComponent.extend("tcs.cartracker.Component", {
         //make split app Global - declare globals
         sap.ui.getCore().Global = new Object();
         sap.ui.getCore().Global.splitApp = splitApp;
-        sap.ui.getCore().Global.context = "";
        
        return splitApp;
    }
