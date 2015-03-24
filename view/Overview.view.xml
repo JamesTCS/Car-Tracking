@@ -1,10 +1,65 @@
 <core:View 
 	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
+	xmlns:core="sap.ui.core"
+	xmlns:viz="sap.viz.ui5.controls"
+	controllerName="tcs.cartracker.controller.Overview">
 	
-	<Page title="Overview" >
+	<Page title="Vehicle Dashboard" >
+	    <Panel headerText = "Honda Civic" width="100%" expandable="true" expanded="true" >
+	        <HBox>
+	            <Image src="img/honda_civic.png" width="150px" height="150px" />
+	            <VBox class="marginSides10">
+                    <Label text="Oil" class="marginTop10" />
+                    <Label text="Filter" class="marginTop10" />
+                    <Label text="Tire Rotation" class="marginTop10" />
+                    <Label text="Tire Change" class="marginTop10" />
+                    <Label text="Brakes" class="marginTop10" />
+                    <Label text="Wash/Wax" class="marginTop10" />
+                </VBox>
+                
+                <VBox>
+                    <ProgressIndicator width="400px" height="22px" percentValue="30" displayValue="30%" showValue="true" state="Success" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="75" displayValue="75%" showValue="true" state="Error" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="50" displayValue="50%" showValue="true" state="Warning" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="10" displayValue="10%" showValue="true" state="None" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="60" displayValue="60%" showValue="true" state="Warning" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="25" displayValue="25%" showValue="true" state="None" />
+	            </VBox>
+	            
+	            <viz:VizFrame id="hondaGraph" vizType="line" width="250px" height="250px"></viz:VizFrame>
+	            
+	        </HBox>
+	    </Panel>
 	    
-	    <Label text="Overview of Cars" />
+	    <Panel headerText = "Cadillac" width="100%" expandable="true" expanded="true"  >
+	        <HBox>
+	            <Image src="img/cadillac.png" width="150px" height="150px"  />
+	            <VBox class="marginSides10">
+                    <Label text="Oil" class="marginTop10" />
+                    <Label text="Filter" class="marginTop10" />
+                    <Label text="Tire Rotation" class="marginTop10" />
+                    <Label text="Tire Change" class="marginTop10" />
+                    <Label text="Brakes" class="marginTop10" />
+                    <Label text="Wash/Wax" class="marginTop10" />
+                </VBox>
+                
+                <VBox>
+                    <ProgressIndicator width="400px" height="22px" percentValue="45" displayValue="45%" showValue="true" state="Success" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="22" displayValue="22%" showValue="true" state="None" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="95" displayValue="95%" showValue="true" state="Error" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="82" displayValue="82%" showValue="true" state="Error" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="55" displayValue="55%" showValue="true" state="Warning" />
+                    <ProgressIndicator width="400px" height="22px" percentValue="64" displayValue="64%" showValue="true" state="Warning" />
+	            </VBox>
+	            
+	            <viz:VizFrame id="cadillacGraph" vizType="line" width="250px" height="250px"></viz:VizFrame>
+	            
+	            
+	        </HBox>
+	    
+	    </Panel>
+	        
+	 
     </Page>
 	
 </core:View>

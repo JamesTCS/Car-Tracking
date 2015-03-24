@@ -6,20 +6,20 @@
     ],
     
     "settings" : [
-      {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotation": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000},
-      {"warning": 800, "oil": 5000, "filter": 10000, "tireRotation": 20000, "tireChange": 60000, "brakes": 25000, "carWash": 12000}
+      {"oil": 3000, "oilWar" : 500, "filter": 9000, "filterWar": 500, "tireRotation": 7500, "tireRotationWar": 500, "tireChange": 30000, "tireChangeWar": 2000, "brakes": 30000, "brakesWar": 1000, "carWash": 10000, "carWashWar": 100},
+      {"oil": 3000, "oilWar" : 500, "filter": 9000, "filterWar": 500, "tireRotation": 7500, "tireRotationWar": 500, "tireChange": 30000, "tireChangeWar": 2000, "brakes": 30000, "brakesWar": 1000, "carWash": 10000, "carWashWar": 100}
         
     ],
     
     "oil" : [
         
         [
-            {"miles": 1000, "date": "Mon Mar 16 2015"},
-            {"miles": 4000, "date": "Mon Mar 16 2015"},
-            {"miles": 7000, "date": "Mon Mar 16 2015"},
-            {"miles": 10000, "date": "Mon Mar 16 2015"},
-            {"miles": 13000, "date": "Mon Mar 16 2015"},
-            {"miles": 15000, "date": "Mon Mar 16 2015"}
+            {"miles": 1000, "date": "Mon Jan 1 2012", "date2": 1},
+            {"miles": 4000, "date": "Mon Feb 5 2015", "date2": 2},
+            {"miles": 7000, "date": "Mon Mar 10 2015", "date2": 3},
+            {"miles": 10000, "date": "Mon Apr 20 2015", "date2": 4},
+            {"miles": 13000, "date": "Mon May 30 2015", "date2": 5},
+            {"miles": 15000, "date": "Mon Jun 20 2020", "date2": 6}
         ],
         [
             {"miles": 2000, "date": "Mon Mar 16 2015"},
@@ -57,7 +57,7 @@
         ],
         [
             {"miles": 5000, "date": "Mon Mar 16 2015"},
-            {"miles": 10000, "date":"Mon Mar 16 2015"}
+            {"miles": 10000, "date":"Mon May 16 2015"}
         ]
         
     ],
