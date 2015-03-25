@@ -2,13 +2,14 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
 	xmlns:f="sap.ui.layout.form"
+	xmlns:viz="sap.viz.ui5.controls"
 	controllerName="tcs.cartracker.controller.Car"	>
 
-	<Page title="Vehicle Details" showNavButton="true" >
+	<Page title="Vehicle Details" showNavButton="true" navButtonPress="backBtnPress" >
 	    <headerContent>
 	        
-	        <Button id="updateMilesBtn" icon="sap-icon://performance" text="Update Miles" press="updateMiles" />
-            <Button icon="sap-icon://action-settings" />
+	        <Button id="updateMilesBtn" icon="sap-icon://performance" text="Update Miles" press="showMilesDialog" />
+            <Button id="settingsBtn" icon="sap-icon://action-settings" text="Settings" press="settingsPress" />
         </headerContent>
 	    <ObjectHeader
 	        id="infoHeader"
@@ -53,7 +54,7 @@
                           </IconTabFilter>
                           <IconTabFilter
                             text="Graph">
-                            <Text text="Attachments go here ..." />
+                            <viz:VizFrame id="oilGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                           </IconTabFilter>
                           <IconTabFilter
                             text="Add">
@@ -85,7 +86,7 @@
                           </IconTabFilter>
                           <IconTabFilter
                             text="Graph">
-                            <Text text="Attachments go here ..." />
+                            <viz:VizFrame id="filterGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                           </IconTabFilter>
                           <IconTabFilter
                             text="Add">
@@ -116,7 +117,7 @@
                           </IconTabFilter>
                           <IconTabFilter
                             text="Graph">
-                            <Text text="Attachments go here ..." />
+                            <viz:VizFrame id="tireRotationGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                           </IconTabFilter>
                           <IconTabFilter
                             text="Add">
@@ -146,7 +147,7 @@
                       </IconTabFilter>
                       <IconTabFilter
                         text="Graph">
-                        <Text text="Attachments go here ..." />
+                        <viz:VizFrame id="tireChangeGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                       </IconTabFilter>
                       <IconTabFilter
                         text="Add">
@@ -176,7 +177,7 @@
                       </IconTabFilter>
                       <IconTabFilter
                         text="Graph">
-                        <Text text="Attachments go here ..." />
+                        <viz:VizFrame id="brakesGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                       </IconTabFilter>
                       <IconTabFilter
                         text="Add">
@@ -206,7 +207,7 @@
                       </IconTabFilter>
                       <IconTabFilter
                         text="Graph">
-                        <Text text="Attachments go here ..." />
+                        <viz:VizFrame id="carWashGraph" vizType="line" width="100%" height="550px"></viz:VizFrame>
                       </IconTabFilter>
                       <IconTabFilter
                         text="Add">

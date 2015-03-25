@@ -34,7 +34,7 @@ sap.ui.controller("tcs.cartracker.controller.AddCar", {
             var car = new Object();
             car.name = name;
             car.miles = miles;
-            var defaultSettings = {"warning" : 500, "oil": 3000, "filter": 9000, "tireRotation": 15000, "tireChange": 50000, "brakes": 50000, "carWash": 10000};
+            var defaultSettings = {"oil": 3000, "oilWar" : 500, "filter": 9000, "filterWar": 500, "tireRotation": 7500, "tireRotationWar": 500, "tireChange": 30000, "tireChangeWar": 2000, "brakes": 30000, "brakesWar": 1000, "carWash": 10000, "carWashWar": 100};
             
             vehModel.setProperty(context, car);
             vehModel.setProperty("/settings/"+ vehObject.settings.length, defaultSettings );

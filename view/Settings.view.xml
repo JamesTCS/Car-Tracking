@@ -1,0 +1,89 @@
+<core:View 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="tcs.cartracker.controller.Settings"	>
+	
+	<Page title="Vehicle Settings" showNavButton="true" navButtonPress="backBtnPress" >
+	    
+	
+	    <f:SimpleForm id="Settings"
+        maxContainerCols="4"
+        editable="true"
+        layout="ResponsiveGridLayout"
+        title="Set the Frequency to Service"
+        labelSpanL="5"
+        labelSpanM="5"
+        emptySpanL="0"
+        emptySpanM="0"
+        columnsL="3"
+        columnsM="2">
+        <f:content>
+            <core:Title text="Oil" />
+            <Label text="Change Oil Every" />
+            <Input id="oil" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="oilWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            <core:Title text="Filter" />
+            <Label text="Change Filter Every" />
+            <Input id="filter" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="filterWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            <core:Title text="Tire Rotation" />
+            <Label text="Rotate Tires Every" />
+            <Input id="tireRotation" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="tireRotationWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            <core:Title text="Tires" />
+            <Label text="Change Tires Every" />
+            <Input id="tireChange" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="tireChangeWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            <core:Title text="Brakes" />
+            <Label text="Change Brakes Every" />
+            <Input id="brakes" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="brakesWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            <core:Title text="Wash/Wax" />
+            <Label text="Wash/Wax Every" />
+            <Input id="carWash" type="Number" width="140px" />
+            <Text text="Miles" />
+            <Label text="Warning Within" />
+            <Input id="carWashWar" type="Number" width="140px" />
+            <Text text="Miles" />
+            
+            
+          
+        </f:content>
+      </f:SimpleForm>
+	  
+	  <footer>
+	    <Toolbar>
+            <ToolbarSpacer />
+            <Button text="Delete" icon="sap-icon://delete" type="Reject" press="deleteCar" />
+            <ToolbarSpacer />
+            <Button text="Save" icon="sap-icon://save" type="Accept" press="saveSettings" />
+            
+        </Toolbar>
+	      
+	  </footer>  
+	    
+	</Page>
+	
+	
+</core:View>

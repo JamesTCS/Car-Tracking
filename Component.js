@@ -23,10 +23,12 @@ sap.ui.core.UIComponent.extend("tcs.cartracker.Component", {
         var car = new sap.ui.core.mvc.XMLView( {id:"car", viewName:"tcs.cartracker.view.Car"} );
         var carList = new sap.ui.core.mvc.XMLView( {id:"carList", viewName:"tcs.cartracker.view.CarList"} );
         var addCar = new sap.ui.core.mvc.XMLView( {id:"addCar", viewName:"tcs.cartracker.view.AddCar"} );
+        var settings = new sap.ui.core.mvc.XMLView( {id:"settings", viewName:"tcs.cartracker.view.Settings"} );
         splitApp.addMasterPage(carList);
         splitApp.addDetailPage(overview);
         splitApp.addDetailPage(addCar);
         splitApp.addDetailPage(car);
+        splitApp.addDetailPage(settings);
         
         //make split app Global - declare globals
         sap.ui.getCore().Global = new Object();

@@ -10,7 +10,7 @@
 	    </headerContent>
 	
         <List 
-        id="list"
+        id="carList"
         items="{vehicleDB>/vehicles}"
         mode="SingleSelectMaster"
         select="carSelect" >
@@ -18,6 +18,15 @@
               title="{vehicleDB>name}"
               counter="{vehicleDB>miles}"/>
         </List>
+        
+         <footer>
+    	    <Toolbar>
+                <Button text="Cloud Upload" icon="sap-icon://upload" styled="false" />
+                <ToolbarSpacer />
+                <Button text="Cloud Download" icon="sap-icon://download" type="Emphasized" />
+            </Toolbar>
+	      
+	  </footer>  
     </Page>
 	
 </core:View>

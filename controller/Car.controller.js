@@ -1,13 +1,17 @@
 jQuery.sap.require("sap.m.MessageToast");
+jQuery.sap.require("sap.ui.core.format.DateFormat");
 
 sap.ui.controller("tcs.cartracker.controller.Car", {
 
-/**
-* Called when a controller is instantiated and its View controls (if available) are already created.
-* Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-* @memberOf calculator.calculator
-*/
 	onInit: function() {
+	    
+	    this.isPhone = sap.ui.Device.system.phone;
+		this.isNoPhone = !sap.ui.Device.system.phone;
+		
+		if(this.isPhone) {
+		    this.byId("updateMilesBtn").setText("");
+		    this.byId("settingsBtn").setText("");
+		}
 
 	   this.tableTemplate = new sap.m.ColumnListItem({
 	       cells:[
@@ -15,6 +19,8 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	           new sap.m.Text({  text : "{vehicleDB>miles}"  })
 	       ]
 	   });
+	   
+	   this.milesDialog = sap.ui.xmlfragment("tcs.cartracker.fragments.MilesDialog", this);
 	   
 	   this.byId("oilTabs").setSelectedKey("oilTable"); // set oil first tab selected
 	   // set table labels
@@ -34,6 +40,46 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	   
 	},
 	
+	backBtnPress: function(event) {
+	    sap.ui.getCore().Global.splitApp.backToPage("overview");
+	    sap.ui.getCore().byId("carList").getController().clearSelection();
+	},
+	
+	showMilesDialog: function(event) {
+	    this.milesDialog.open();
+	},
+	
+	milesDialogSave: function(event) {
+	    this.milesDialog.close();
+	    var model = this.getView().getModel("vehicleDB");
+	    var oldMiles = model.getProperty("/vehicles/"+this.carID+"/miles");
+	    var miles = parseInt( sap.ui.getCore().byId("miles").getValue() );
+	    
+	    if(miles === NaN) {
+            sap.m.MessageToast.show("Miles cannot be empty");
+            return;
+        }
+        else if( !this.isInt(miles) ) {
+            sap.m.MessageToast.show("Miles must be an integer");
+            return;
+        }
+        
+        else if(miles < oldMiles ) {
+            sap.m.MessageToast.show("New Value should not be less than old Value!");
+        }
+        // update model and store to cache
+        model.setProperty("/vehicles/"+this.carID+"/miles", miles);
+        var json = model.getJSON();
+        var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+        storage.put("vehicleDB", json); //Set Data  
+        this.changeCarData(this.context, this.carID);
+        sap.m.MessageToast.show("Miles Updated!");
+	},
+	
+	onDialogCloseButton: function(event) {
+	    this.milesDialog.close();  
+	},
+	
 	changeCarData: function(context, carID) {
 	    this.context = context; // set context to class variable
 	    this.carID = carID; // set the car ID to class variable
@@ -43,7 +89,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	    
 	    //Update Quick Info Area, bind data and calculate if maintenance is needed
 	    this.byId("infoHeader").setBindingContext(context, "vehicleDB");
-	    debugger;
+	    
 	    // oil calculations, information, and status
 	    var length = model.getProperty("/oil/"+carID).length - 1;
 	    if(length < 0) {
@@ -58,7 +104,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             
             var difference = vehicle.miles - oil.miles;
             
-            if(difference < settings.filter && difference >= (settings.oil - settings.warning) )
+            if(difference < settings.filter && difference >= (settings.oil - settings.oilWar) )
                 this.byId("oilStatus").setText("Maintain Soon").setState("Warning");
             else if (difference > settings.oil)
                 this.byId("oilStatus").setText("Requires Maintainence").setState("Error");
@@ -80,7 +126,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             
             var difference = vehicle.miles - filter.miles;  // how many miles has it been since last filter change
             
-            if(difference < settings.filter && difference >= (settings.filter - settings.warning) )
+            if(difference < settings.filter && difference >= (settings.filter - settings.filterWar) )
                 this.byId("filterStatus").setText("Maintain Soon").setState("Warning");
             else if( difference > settings.filter)
                 this.byId("filterStatus").setText("Requires Maintainence").setState("Error");
@@ -102,7 +148,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             
             var difference = vehicle.miles - tireRotation.miles;  // how many miles has it been since last tire rotation
             
-            if(difference < settings.tireRotation && difference >= (settings.tireRotation - settings.warning) )
+            if(difference < settings.tireRotation && difference >= (settings.tireRotation - settings.tireRotationWar) )
                 this.byId("tireRotationStatus").setText("Maintain Soon").setState("Warning");
             else if ( difference > settings.tireRotation)
                 this.byId("tireRotationStatus").setText("Requires Maintainence").setState("Error");
@@ -124,9 +170,9 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             
             var difference = vehicle.miles - tireChange.miles; // how many miles has it been since last tire change
             
-            if(difference < settings.tireChange && difference >= (settings.tireChange - settings.warning) )
+            if(difference < settings.tireChange && difference >= (settings.tireChange - settings.tireChangeWar) )
                 this.byId("tireChangeStatus").setText("Maintain Soon").setState("Warning");
-            else if ( difference > settings.changeTire)
+            else if ( difference > settings.tireChange)
                 this.byId("tireChangeStatus").setText("Requires Maintainence").setState("Error");
             else
                 this.byId("tireChangeStatus").setText("OK").setState("Success");
@@ -146,7 +192,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             
             var difference = vehicle.miles - brakes.miles;  // how many miles has it been since brake change
             
-            if( difference < settings.brakes && difference >= (settings.brakes - settings.warning) )
+            if( difference < settings.brakes && difference >= (settings.brakes - settings.brakesWar) )
                 this.byId("brakesStatus").setText("Maintain Soon").setState("Warning");
             else if( difference > settings.brakes)
                 this.byId("brakesStatus").setText("Requires Maintainence").setState("Error");
@@ -167,7 +213,7 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 
             var difference = vehicle.miles - carWash.miles; // how many miles has it been since last car wash
             
-            if( difference < settings.carWash && difference >= (settings.carWash - settings.warning) )
+            if( difference < settings.carWash && difference >= (settings.carWash - settings.carWashWar) )
                 this.byId("carWashStatus").setText("Maintain Soon").setState("Warning");
             else if (difference > settings.carWash)
                 this.byId("carWashStatus").setText("Requires Maintainence").setState("Error");
@@ -215,14 +261,21 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	    this.byId("carWashRemove--delTable").bindItems("vehicleDB>/carWash/"+carID, this.tableTemplate);
 	    this.byId("carWashRemove--delTable").getBinding("items").sort(sorter);
 	    
-	    //testing and debuggin area
-	    var oilInfo = this.byId("oilInfo");
-	    var filterInfo = this.byId("filterInfo");
-	    var oilTable = this.byId("oilTable");
-	    var filterTable = this.byId("filterTable");
-	    var infoHeader = this.byId("infoHeader");
-	    var carWashInfo = this.byId("carWashInfo");
-	    debugger;
+	    //Create Graphs
+	    this.lastMile = 0;
+	    this.createGraph("oilGraph", "/oil/");
+	    this.lastMile = 0;
+	    this.createGraph("filterGraph", "/filter/");
+	    this.lastMile = 0;
+	    this.createGraph("tireRotationGraph", "/tireRotation/");
+	    this.lastMile = 0;
+	    this.createGraph("tireChangeGraph", "/tireChange/");
+	    this.lastMile = 0;
+	    this.createGraph("brakesGraph", "/brakes/");
+	    this.lastMile = 0;
+	    this.createGraph("carWashGraph", "/carWash/");
+	    
+	    
 
 	},
 	
@@ -258,7 +311,6 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
 	    this.byId(fragment+"--date").setDateValue(null);
 
 	    //save data to model
-	    debugger;
 	    date = date.toDateString();
 	    var serviceRecord = {"miles": miles, "date": date};
 	    var serviceContext = keys[fragment];
@@ -282,7 +334,6 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
     
     deleteService: function(event) {
       
-        debugger;
         //get fragment
         var fragment = event.getSource().getId().split("--")[1];
         //get selected items
@@ -338,6 +389,92 @@ sap.ui.controller("tcs.cartracker.controller.Car", {
             this.byId("brakeTabs").setSelectedKey("brakesTable");
         else if(key === "carWash")
             this.byId("carWashTabs").setSelectedKey("carWashTable");
+    },
+    
+    settingsPress: function(event) {
+        sap.ui.getCore().Global.splitApp.toDetail("settings", "flip");
+        sap.ui.getCore().byId("settings").getController().updateFields(this.carID);
+    },
+    
+    createGraph: function(id, context) {
+        
+        var oVizFrame = this.getView().byId(id);
+        var oModel = this.getView().getModel("vehicleDB");
+        var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+              dimensions : [ {
+                name : 'Date',
+                value : "{date}"
+                /*value : {
+                    path:"date",
+                    formatter: function(val ) {
+                        if(val === null)  // for what ever reason first iteration val is always null so check for that....
+                            return
+                        else
+                            return val;//val.split(" ")[1]; // parse out the month and return
+                    }
+                }*/
+                
+              }],
+              measures : [ {
+                name : 'Miles',
+                value : {
+                    path:"miles",
+                    formatter: function(val  ) {
+                        if(this.lastMile === 0) {
+                            this.lastMile = val;
+                            return null;
+                        }
+                        else {
+                            var difference = val - this.lastMile;
+                            this.lastMile = val;
+                            return difference;
+                        }
+                            
+                    }
+                }
+              }],
+              data : {
+                path : context+this.carID
+              }
+        });
+  
+        oVizFrame.setVizProperties({
+          valueAxis : {
+            label : {
+                   formatString : 'u'
+            }
+          },
+          dataLabel : {visible : true},
+                
+            legend : {
+                visible: false,
+                title: {visible : false}
+            },
+            
+            title: {
+                visible: true,
+                text: 'Miles Since Last Change'
+           }
+           
+           
+
+        });
+        oVizFrame.setDataset(oDataset);
+        oVizFrame.setModel(oModel);
+
+        var feedPrimaryValues = new sap.viz.ui5.controls.common.feeds.FeedItem({
+          'uid' : "primaryValues",
+          'type' : "Measure",
+          'values' : ["Miles"]
+        }), feedAxisLabels = new sap.viz.ui5.controls.common.feeds.FeedItem({
+          'uid' : "axisLabels",
+          'type' : "Dimension",
+          'values' : ["Date"]
+        });
+    
+        oVizFrame.addFeed(feedPrimaryValues);
+        oVizFrame.addFeed(feedAxisLabels);
     }
+
 
 });
